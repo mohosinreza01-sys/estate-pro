@@ -46,10 +46,10 @@ export default function PropertyGallery() {
   return (
     <section aria-label="Property photos">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-gray-500">
-          Home <span className="px-1 text-gray-300">/</span> For Sale
-          <span className="px-1 text-gray-300">/</span> Pennsylvania
-          <span className="px-1 text-gray-300">/</span> Harrisburg
+        <p className="text-sm text-[#777465]">
+          Home <span className="px-1 text-[#b8aa85]">/</span> For Sale
+          <span className="px-1 text-[#b8aa85]">/</span> Pennsylvania
+          <span className="px-1 text-[#b8aa85]">/</span> Harrisburg
         </p>
 
         <div className="flex items-center gap-2">
@@ -57,7 +57,7 @@ export default function PropertyGallery() {
             type="button"
             aria-pressed={isSaved}
             onClick={() => setIsSaved((saved) => !saved)}
-            className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 text-sm font-medium text-gray-700 transition hover:border-[#084477] hover:text-[#084477] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#084477]"
+            className="inline-flex min-h-10 items-center gap-2 rounded-full border border-[#e2dbc9] bg-[#fbf9f2] px-4 text-sm font-medium text-[#526158] transition hover:border-[#b99a5a] hover:text-[#765f2f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#927747]"
           >
             <Heart
               size={16}
@@ -69,7 +69,7 @@ export default function PropertyGallery() {
           <button
             type="button"
             onClick={shareListing}
-            className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 text-sm font-medium text-gray-700 transition hover:border-[#084477] hover:text-[#084477] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#084477]"
+            className="inline-flex min-h-10 items-center gap-2 rounded-full border border-[#e2dbc9] bg-[#fbf9f2] px-4 text-sm font-medium text-[#526158] transition hover:border-[#b99a5a] hover:text-[#765f2f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#927747]"
           >
             <Share2 size={16} aria-hidden="true" />
             Share
@@ -80,7 +80,7 @@ export default function PropertyGallery() {
         {shareMessage}
       </p>
 
-      <div className="grid h-[320px] grid-cols-2 grid-rows-2 gap-2 overflow-hidden rounded-2xl bg-gray-100 sm:h-[400px] sm:grid-cols-4">
+      <div className="grid h-[320px] grid-cols-2 grid-rows-2 gap-2 overflow-hidden rounded-[24px] bg-[#e6e2d6] ring-1 ring-[#e2dbc9] sm:h-[440px] sm:grid-cols-4">
         <div className="relative col-span-2 row-span-1 overflow-hidden sm:row-span-2">
           <Image
             src={images[0]}
@@ -93,7 +93,7 @@ export default function PropertyGallery() {
           <button
             type="button"
             onClick={() => photoDialog.current?.showModal()}
-            className="absolute bottom-3 right-3 inline-flex min-h-10 items-center gap-2 rounded-lg bg-white/95 px-3 text-sm font-semibold text-gray-800 shadow-md backdrop-blur transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="absolute bottom-3 right-3 inline-flex min-h-10 items-center gap-2 rounded-full bg-[#f7f3e8]/95 px-4 text-sm font-semibold text-[#173a2b] shadow-md backdrop-blur transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             <Camera size={16} aria-hidden="true" />
             View {images.length} photos
@@ -121,10 +121,10 @@ export default function PropertyGallery() {
         aria-label="Property photo gallery"
         className="m-auto max-h-[90vh] w-[calc(100%-2rem)] max-w-[1000px] overflow-y-auto rounded-2xl p-0 shadow-2xl backdrop:bg-black/70"
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white px-5 py-4">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#e9e3d6] bg-[#faf9f4] px-5 py-4">
           <div>
-            <h2 className="font-semibold text-gray-900">Property photos</h2>
-            <p className="mt-0.5 text-xs text-gray-500">
+            <h2 className="font-semibold text-[#173a2b]">Property photos</h2>
+            <p className="mt-0.5 text-xs text-[#777465]">
               {images.length} photos
             </p>
           </div>
@@ -132,13 +132,13 @@ export default function PropertyGallery() {
             <button
               type="submit"
               aria-label="Close photo gallery"
-              className="rounded-full p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#084477]"
+              className="rounded-full p-2 text-[#526158] transition hover:bg-[#e9e1cf] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#927747]"
             >
               <X size={20} aria-hidden="true" />
             </button>
           </form>
         </div>
-        <div className="grid gap-3 bg-gray-50 p-4 sm:grid-cols-2 sm:p-6">
+        <div className="grid gap-3 bg-[#f3f0e6] p-4 sm:grid-cols-2 sm:p-6">
           {images.map((image, index) => (
             <div key={image} className="relative aspect-[4/3] overflow-hidden rounded-xl">
               <Image

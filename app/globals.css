@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
-:root {
-  --primary: #084477;
-  --primary-dark: #062f55;
-  --background: #ffffff;
-  --foreground: #17212f;
+
+
+@theme {
+  --font-sans: var(--font-jost), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, monospace;
+:root {
+  --primary: #214b38;
+  --primary-dark: #173a2b;
+  --background: #faf9f4;
+  --foreground: #19372f;
 }
+
+
 
 * {
   box-sizing: border-box;
@@ -26,8 +27,9 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-jost), "Segoe UI", Arial, sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 button,
@@ -40,13 +42,65 @@ a {
   margin-inline: auto;
 }
 
-.map-placeholder {
-  background-color: #edf3ee;
-  background-image:
-    linear-gradient(32deg, transparent 46%, rgba(255, 255, 255, 0.9) 47%, rgba(255, 255, 255, 0.9) 50%, transparent 51%),
-    linear-gradient(146deg, transparent 39%, rgba(255, 255, 255, 0.85) 40%, rgba(255, 255, 255, 0.85) 43%, transparent 44%),
-    linear-gradient(90deg, transparent 48%, rgba(206, 221, 208, 0.6) 49%, rgba(206, 221, 208, 0.6) 51%, transparent 52%);
-  background-size: 280px 170px, 360px 220px, 150px 150px;
+.eyebrow {
+  color: #967b45;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin-top: 9px;
+  color: #19372f;
+  font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+}
+
+.button-primary,
+.button-light {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 9999px;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.button-primary {
+  background: #214b38;
+  color: white;
+}
+
+.button-primary:hover {
+  background: #173a2b;
+  transform: translateY(-1px);
+}
+
+.button-light {
+  background: white;
+  color: #143b30;
+}
+
+.button-light:hover {
+  background: #d3b875;
+  transform: translateY(-1px);
+}
+
+.button-primary:focus-visible,
+.button-light:focus-visible {
+  outline: 2px solid #214b38;
+  outline-offset: 3px;
 }
 
 img {
@@ -62,5 +116,9 @@ img {
 @media (max-width: 640px) {
   .container-main {
     width: calc(100% - 32px);
+  }
+
+  .eyebrow {
+    font-size: 10px;
   }
 }

@@ -1,6 +1,13 @@
 
 import type { Metadata } from "next";
+import { Jost } from "next/font/google";
 import "./globals.css";
+
+const jost = Jost({
+  subsets: ["latin"],
+  variable: "--font-jost",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Zenvia | Discover Your Dream Home",
@@ -14,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={jost.variable}>
+      <body className={jost.className}>{children}</body>
     </html>
   );
 }

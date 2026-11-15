@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowDownRight,
   ArrowRight,
-  BadgeCheck,
   Building2,
-  Compass,
+  Check,
+  ChevronRight,
   House,
   KeyRound,
-  MapPin,
-  MessageCircle,
+  Sparkles,
 } from "lucide-react";
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
@@ -17,75 +18,58 @@ import HomePropertyFinder from "./components/home/HomePropertyFinder";
 export const metadata: Metadata = {
   title: "Zenvia | Find a Home in Harrisburg",
   description:
-    "Explore homes around Harrisburg, compare property details, and connect with a local real estate professional through Zenvia.",
+    "Discover thoughtfully selected homes around Harrisburg and find a place that feels like yours with Zenvia.",
 };
 
-const waysToMove = [
+const propertyTypes = [
+  { icon: House, label: "Houses", count: "Find your space", href: "#featured-homes" },
+  { icon: Building2, label: "Apartments", count: "City living", href: "#featured-homes" },
+  { icon: KeyRound, label: "Rentals", count: "A flexible stay", href: "#featured-homes" },
+  { icon: Sparkles, label: "New homes", count: "A fresh start", href: "#featured-homes" },
+];
+
+const neighborhoods = [
   {
-    icon: House,
-    title: "Buy a home",
-    description:
-      "Explore featured homes, compare the details, and take a closer look at a property that fits your plans.",
-    label: "Browse homes",
-    href: "#featured-homes",
+    name: "Downtown Harrisburg",
+    detail: "City living, beautifully connected",
+    image:
+      "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=1000&auto=format&fit=crop",
+    className: "md:col-span-2 md:row-span-2",
   },
   {
-    icon: KeyRound,
-    title: "Find a rental",
-    description:
-      "Tell us what you are looking for and start a conversation about rental options in the area.",
-    label: "Ask about rentals",
-    href: "/contact",
+    name: "Mechanicsburg",
+    detail: "Room to settle in",
+    image:
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&auto=format&fit=crop",
+    className: "",
   },
   {
-    icon: Building2,
-    title: "Sell your property",
-    description:
-      "Have a home to sell? Reach out and let our team know how we can help with your next move.",
-    label: "Talk to our team",
-    href: "/contact",
+    name: "Camp Hill",
+    detail: "A neighborhood feel",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&auto=format&fit=crop",
+    className: "",
   },
 ];
 
-const steps = [
+const processSteps = [
   {
     number: "01",
-    title: "Explore",
+    title: "Tell us what feels like home",
     description:
-      "Start with the homes and places that catch your eye. Use the search to narrow the featured listings.",
+      "Set your priorities, explore the neighborhoods, and find a few places that feel right.",
   },
   {
     number: "02",
-    title: "Compare",
+    title: "Get the full picture",
     description:
-      "Review the price, features, location, and other details before deciding what you want to know more about.",
+      "Compare the details that matter and get thoughtful answers from a local expert.",
   },
   {
     number: "03",
-    title: "Connect",
+    title: "Make your next move",
     description:
-      "Contact the listing agent or send our team a message to talk through your next step.",
-  },
-];
-
-const benefits = [
-  {
-    icon: Compass,
-    title: "A clearer first step",
-    description:
-      "Useful property information and simple search tools help you focus on the homes that matter to you.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Details in one place",
-    description:
-      "See key home features, neighborhood context, and ways to contact an agent without searching around.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Real conversations",
-    description:
-      "When you are ready, reach a real estate professional directly with your questions.",
+      "When you are ready, we’ll help turn your shortlist into a confident next step.",
   },
 ];
 
@@ -96,122 +80,112 @@ export default function Home() {
       <main>
         <HomePropertyFinder />
 
-        <section
-          id="explore-options"
-          className="border-y border-gray-100 bg-[#f7f9fb] py-14 sm:py-18"
-        >
-          <div className="container-main">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#084477]">
-                Make your move
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#17212f]">
-                What brings you here?
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                Wherever you are in your real estate journey, start with the
-                path that makes sense for you.
-              </p>
+        <section id="property-types" className="container-main py-12 sm:py-16">
+          <div className="flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p className="eyebrow">A place for every next chapter</p>
+              <h2 className="section-title">Explore by property type</h2>
             </div>
-
-            <div className="mt-7 grid gap-4 md:grid-cols-3">
-              {waysToMove.map(({ icon: Icon, title, description, label, href }) => (
-                <article
-                  key={title}
-                  className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#eaf2f8] text-[#084477]">
-                    <Icon size={21} aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-5 text-lg font-bold text-[#17212f]">
-                    {title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-6 text-gray-600">
-                    {description}
-                  </p>
-                  <Link
-                    href={href}
-                    className="mt-5 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-[#084477] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#084477]"
-                  >
-                    {label}
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                </article>
-              ))}
-            </div>
+            <p className="max-w-sm text-sm leading-6 text-[#71807b]">
+              From a first apartment to a forever home, find a space that fits
+              the way you want to live.
+            </p>
+          </div>
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            {propertyTypes.map(({ icon: Icon, label, count, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="group rounded-2xl border border-[#e7e0d1] bg-[#f7f4eb] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#c5ad70] hover:bg-[#fffdf7] hover:shadow-[0_14px_40px_rgba(18,55,43,0.1)] sm:p-6"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e9e1cf] text-[#927747] transition group-hover:bg-[#214b38] group-hover:text-[#f8f4e9]">
+                  <Icon size={20} aria-hidden="true" />
+                </span>
+                <span className="mt-5 block font-semibold text-[#173a2b]">
+                  {label}
+                </span>
+                <span className="mt-1 block text-xs text-[#777465]">{count}</span>
+              </Link>
+            ))}
           </div>
         </section>
 
-        <section className="container-main py-14 sm:py-18">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#084477]">
-                The Zenvia difference
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#17212f]">
-                Real estate, with more clarity and connection.
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
-                We bring the important details and the people behind a move
-                closer together, so exploring a home can feel more
-                straightforward.
-              </p>
-              <Link
-                href="/about"
-                className="mt-5 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-[#084477] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#084477]"
-              >
-                Get to know Zenvia
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
+        <section className="bg-[#f3f0e6] py-14 sm:py-20">
+          <div className="container-main grid gap-9 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:gap-16">
+            <div className="relative min-h-[300px] overflow-hidden rounded-[26px] sm:min-h-[420px]">
+              <Image
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&auto=format&fit=crop"
+                alt="A light-filled home surrounded by greenery"
+                fill
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#082e26]/45 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 rounded-xl border border-[#e7ddc6] bg-[#faf7ed]/95 px-4 py-3 shadow-lg backdrop-blur">
+                <p className="text-xs font-medium text-[#927747]">LOCAL KNOWLEDGE</p>
+                <p className="mt-1 text-sm font-semibold text-[#173a2b]">
+                  Right here in Harrisburg
+                </p>
+              </div>
             </div>
-
-            <div className="grid gap-3 sm:grid-cols-3">
-              {benefits.map(({ icon: Icon, title, description }) => (
-                <article
-                  key={title}
-                  className="rounded-2xl border border-gray-200 bg-white p-5"
-                >
-                  <Icon
-                    size={21}
-                    className="text-[#084477]"
-                    aria-hidden="true"
-                  />
-                  <h3 className="mt-4 font-semibold text-[#17212f]">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-gray-600">
-                    {description}
-                  </p>
-                </article>
-              ))}
+            <div className="max-w-lg">
+              <p className="eyebrow">A more personal way home</p>
+              <h2 className="section-title text-3xl sm:text-4xl">
+                Good moves start with good people.
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-[#6f746a] sm:text-base">
+                Finding a home is a big, personal thing. Our local team brings
+                together thoughtful guidance, honest details, and a little
+                extra care at every step.
+              </p>
+              <ul className="mt-6 space-y-3">
+                {[
+                  "Local insight from people who know the area",
+                  "Clear answers, without the pressure",
+                  "Support that stays with you from search to keys",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-sm font-medium text-[#29443c]"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#e9e1cf] text-[#927747]">
+                      <Check size={14} strokeWidth={2.5} aria-hidden="true" />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/about" className="button-primary mt-8">
+                Meet your local team <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>
 
         <section
           id="how-it-works"
-          className="bg-[#f7f9fb] py-14 sm:py-18"
+          className="bg-[#173a2b] py-14 text-[#f8f4e9] sm:py-20"
         >
           <div className="container-main">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#084477]">
-                Simple by design
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#17212f]">
-                Three steps to a more informed move
+            <div className="mx-auto max-w-xl text-center">
+              <p className="eyebrow !text-[#d3b875]">The process, made personal</p>
+              <h2 className="section-title !text-[#f8f4e9]">
+                A little more clarity at every step.
               </h2>
             </div>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {steps.map(({ number, title, description }) => (
+            <div className="mt-9 grid gap-4 md:grid-cols-3">
+              {processSteps.map(({ number, title, description }) => (
                 <article
                   key={number}
-                  className="rounded-2xl border border-gray-200 bg-white p-6"
+                  className="rounded-2xl border border-white/15 bg-white/[0.045] p-6 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#d3b875]/50 hover:bg-white/[0.075] sm:p-7"
                 >
-                  <p className="text-sm font-bold tracking-[0.14em] text-[#084477]">
+                  <span className="text-sm font-semibold tracking-[0.12em] text-[#d3b875]">
                     {number}
-                  </p>
-                  <h3 className="mt-4 text-xl font-bold text-[#17212f]">
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold tracking-tight text-[#fbf8ef]">
                     {title}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-gray-600">
+                  <p className="mt-2 text-sm leading-6 text-[#f8f4e9]/65">
                     {description}
                   </p>
                 </article>
@@ -220,72 +194,104 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container-main py-14 sm:py-18">
-          <div className="grid gap-8 overflow-hidden rounded-3xl border border-[#dce7dc] bg-[#edf3ee] p-6 sm:p-9 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+        <section className="relative isolate overflow-hidden py-16 sm:py-24">
+          <Image
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=2000&auto=format&fit=crop"
+            alt=""
+            fill
+            sizes="100vw"
+            className="-z-20 object-cover"
+          />
+          <div className="absolute inset-0 -z-10 bg-[#09251e]/55" />
+          <div className="container-main flex min-h-56 flex-col items-start justify-center text-white sm:min-h-72">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d3b875]">
+              Take a closer look
+            </p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl">
+              Imagine the life you could make here.
+            </h2>
+            <Link
+              href="/properties/brighton-ct"
+              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#f6f1e4] px-5 text-sm font-semibold text-[#173a2b] transition hover:bg-[#d3b875] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Tour a featured home <ArrowDownRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
+
+        <section id="neighborhoods" className="container-main py-14 sm:py-20">
+          <div className="flex flex-wrap items-end justify-between gap-5">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#084477]">
-                Rooted in the region
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#17212f]">
-                Discover Harrisburg and nearby communities.
-              </h2>
-              <p className="mt-3 max-w-xl text-sm leading-6 text-gray-600">
-                From the city to neighboring towns, explore homes across the
-                Harrisburg area and connect with an agent to learn more about
-                the places on your list.
-              </p>
+              <p className="eyebrow">Find your corner of the world</p>
+              <h2 className="section-title">Get to know the neighborhood.</h2>
+            </div>
+            <Link
+              href="https://maps.google.com/?q=Harrisburg,+PA"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-[#765f2f] transition hover:gap-3"
+            >
+              Explore the area <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="mt-7 grid auto-rows-[210px] gap-4 md:grid-cols-3 md:auto-rows-[230px]">
+            {neighborhoods.map(({ name, detail, image, className }) => (
               <Link
+                key={name}
                 href="https://maps.google.com/?q=Harrisburg,+PA"
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-semibold text-[#084477] shadow-sm transition hover:bg-[#084477] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#084477]"
+                className={`group relative isolate overflow-hidden rounded-2xl ${className}`}
               >
-                <MapPin size={16} aria-hidden="true" />
-                Explore the area
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="-z-20 object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#09251e]/80 via-[#09251e]/5 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-white sm:p-6">
+                  <div>
+                    <p className="text-lg font-semibold">{name}</p>
+                    <p className="mt-1 text-xs text-white/75">{detail}</p>
+                  </div>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#f3e5bd]/50 bg-[#102e24]/25 text-[#f3e5bd] backdrop-blur transition group-hover:bg-[#d3b875] group-hover:text-[#173a2b]">
+                    <ChevronRight size={17} aria-hidden="true" />
+                  </span>
+                </div>
               </Link>
-            </div>
-            <div
-              role="img"
-              aria-label="Map-style preview of Harrisburg and nearby communities"
-              className="map-placeholder relative flex min-h-[220px] items-center justify-center overflow-hidden rounded-2xl border border-white/80 sm:min-h-[280px]"
-            >
-              <div className="absolute left-[12%] top-[20%] h-10 w-10 rounded-full bg-white/70" />
-              <div className="absolute right-[15%] top-[25%] h-14 w-14 rounded-full bg-white/60" />
-              <div className="absolute bottom-[16%] left-[28%] h-8 w-8 rounded-full bg-white/70" />
-              <div className="relative flex items-center gap-3 rounded-full border border-white bg-white/95 px-5 py-3 shadow-lg">
-                <MapPin size={20} className="text-[#084477]" aria-hidden="true" />
-                <span className="text-sm font-semibold text-[#17212f]">
-                  Harrisburg, PA
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
         <section className="container-main pb-14 sm:pb-20">
-          <div className="relative overflow-hidden rounded-3xl bg-[#084477] px-6 py-12 text-center text-white sm:px-12 sm:py-14">
+          <div className="relative overflow-hidden rounded-[26px] bg-[#102e24] px-6 py-10 text-white shadow-[0_24px_70px_rgba(16,46,36,0.16)] sm:px-10 sm:py-12 lg:px-14">
             <div
               aria-hidden="true"
-              className="absolute -right-20 -top-24 h-64 w-64 rounded-full border-[35px] border-white/5"
+              className="absolute -right-10 -top-20 h-64 w-64 rounded-full border-[1px] border-[#d3b875]/20 sm:right-14"
             />
             <div
               aria-hidden="true"
-              className="absolute -bottom-36 -left-20 h-64 w-64 rounded-full border-[35px] border-white/5"
+              className="absolute -right-4 -top-14 h-52 w-52 rounded-full border-[1px] border-[#d3b875]/15"
             />
-            <h2 className="relative text-2xl font-bold tracking-tight sm:text-3xl">
-              Ready to make your next move?
-            </h2>
-            <p className="relative mx-auto mt-3 max-w-xl text-sm leading-6 text-white/75">
-              Tell us what you are looking for. Our team can help you take the
-              next step and connect you with the right person.
-            </p>
-            <Link
-              href="/contact"
-              className="relative mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-[#084477] transition hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              Talk to our team
-              <ArrowRight size={17} aria-hidden="true" />
-            </Link>
+            <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d3b875]">
+                  Your next chapter starts here
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                  Looking for a place to call yours?
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-white/70">
+                  Tell us what matters most. We’ll help you find a home that
+                  feels like the right fit.
+                </p>
+              </div>
+              <Link href="/contact" className="button-light shrink-0">
+                Let’s find your home <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </section>
       </main>

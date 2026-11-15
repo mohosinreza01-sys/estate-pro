@@ -28,11 +28,11 @@ const homes = [
 
 export default function RecommendedProperties() {
     return (
-        <section id="recommended-properties" className="scroll-mt-24 border-t border-gray-200 py-9 sm:py-10">
+        <section id="recommended-properties" className="scroll-mt-24 border-t border-[#e6dfd0] py-9 sm:py-10">
             <div className="flex flex-wrap items-end justify-between gap-2">
                 <div>
-                    <h2 className="text-xl font-bold tracking-tight">Recommended for you</h2>
-                    <p className="mt-2 text-sm text-gray-500">Similar homes near Harrisburg, PA</p>
+                    <h2 className="text-xl font-semibold tracking-tight text-[#173a2b]">Recommended for you</h2>
+                    <p className="mt-2 text-sm text-[#777465]">Similar homes near Harrisburg, PA</p>
                 </div>
             </div>
 
@@ -40,9 +40,9 @@ export default function RecommendedProperties() {
                 {homes.map((home) => (
                     <article
                         key={home.address}
-                        className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+                        className="group overflow-hidden rounded-[22px] border border-[#e5dece] bg-[#fbf9f2] transition duration-300 hover:-translate-y-1 hover:border-[#c5ad70] hover:shadow-[0_18px_42px_rgba(26,41,29,0.12)]"
                     >
-                        <div className="relative h-48 overflow-hidden bg-gray-100">
+                        <div className="relative h-48 overflow-hidden bg-[#e6e2d6]">
                             <Image
                                 src={`https://images.unsplash.com/${home.image}?w=700`}
                                 alt={home.address}
@@ -54,18 +54,18 @@ export default function RecommendedProperties() {
                         </div>
 
                         <div className="p-5">
-                            <h3 className="text-xl font-bold">{home.price}</h3>
-                            <p className="mt-1 text-sm font-semibold">{home.address}</p>
-                            <p className="mt-2 flex items-center gap-1 text-xs text-gray-400">
+                            <h3 className="text-xl font-semibold text-[#173a2b]">{home.price}</h3>
+                            <p className="mt-1 text-sm font-semibold text-[#29443c]">{home.address}</p>
+                            <p className="mt-2 flex items-center gap-1 text-xs text-[#858174]">
                                 <MapPin size={13} /> Harrisburg, Pennsylvania
                             </p>
 
-                            <div className="mt-4 flex gap-4 border-t pt-3 text-xs text-gray-500">
+                            <div className="mt-4 flex gap-4 border-t border-[#e9e3d6] pt-3 text-xs text-[#777465]">
                                 <span className="flex items-center gap-1">
-                                    <BedDouble size={15} /> {home.beds} Beds
+                                    <BedDouble size={15} className="text-[#927747]" /> {home.beds} Beds
                                 </span>
                                 <span className="flex items-center gap-1">
-                                    <Bath size={15} /> {home.baths} Baths
+                                    <Bath size={15} className="text-[#927747]" /> {home.baths} Baths
                                 </span>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 import ContactForm from "./ContactForm";
@@ -37,84 +37,123 @@ export default function ContactPage() {
     <>
       <Navbar />
       <main>
-        <section className="bg-[#f3f7fa]">
-          <div className="container-main py-12 sm:py-16">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#084477]">
-              Contact Zenvia
-            </p>
-            <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-[#17212f] sm:text-5xl">
-              Let&apos;s talk about what comes next.
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-gray-600">
-              Ask about a property, tell us what you are looking for, or simply
-              start a conversation with our team.
-            </p>
+        <section className="relative isolate overflow-hidden bg-[#102e24] text-[#faf8f0]">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-32 -top-48 h-[34rem] w-[34rem] rounded-full border border-[#d3b875]/20"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-12 -top-28 h-[25rem] w-[25rem] rounded-full border border-[#d3b875]/15"
+          />
+          <div className="container-main relative grid gap-9 py-16 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16 lg:py-24">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d3b875]">
+                A good place to begin
+              </p>
+              <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-6xl">
+                Let&apos;s talk about
+                <br />
+                <span className="font-serif font-normal italic text-[#d3b875]">
+                  what comes next.
+                </span>
+              </h1>
+              <p className="mt-5 max-w-xl text-base leading-7 text-[#f4f0e4]/75 sm:text-lg">
+                Tell us what you&apos;re looking for, ask about a home, or simply
+                start a conversation with our local team.
+              </p>
+            </div>
+            <div className="relative flex max-w-sm items-center gap-4 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-sm">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#d3b875]/15 text-[#d3b875]">
+                <MapPin size={21} aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.17em] text-[#d3b875]">
+                  Rooted in the region
+                </p>
+                <p className="mt-1 text-sm font-medium text-white">
+                  Harrisburg, Pennsylvania
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="container-main grid gap-8 py-10 sm:py-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:gap-12">
-          <div>
-            <h2 className="mb-5 text-2xl font-bold tracking-tight text-[#17212f]">
-              Send us a message
-            </h2>
-            <ContactForm />
-          </div>
-
-          <aside className="space-y-5 lg:pt-12">
-            <div className="rounded-2xl bg-[#084477] p-6 text-white sm:p-7">
-              <p className="text-sm font-semibold text-white/70">
-                Prefer a direct conversation?
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight">
-                We&apos;re here to help.
+        <section className="bg-[#f3f0e6]">
+          <div className="container-main grid gap-8 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)] lg:gap-12 lg:py-20">
+            <div>
+              <p className="eyebrow">We&apos;re listening</p>
+              <h2 className="section-title text-3xl sm:text-4xl">
+                Tell us a little about your next move.
               </h2>
-              <p className="mt-3 text-sm leading-6 text-white/75">
-                Reach out by phone or email and let us know how we can help
-                with your real estate plans.
+              <p className="mt-3 mb-7 max-w-xl text-sm leading-6 text-[#6f746a]">
+                Share a few details and we&apos;ll help you find the right next
+                step. Your message opens in your email app for you to review.
               </p>
-              <a
-                href="tel:+1234567890"
-                className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-4 text-sm font-semibold text-[#084477] transition hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Call Zenvia
-              </a>
+              <ContactForm />
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6">
-              <h2 className="font-bold text-[#17212f]">Contact details</h2>
-              <div className="mt-4 space-y-4">
-                {contactMethods.map(({ icon: Icon, label, value, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={href.startsWith("https://") ? "_blank" : undefined}
-                    rel={href.startsWith("https://") ? "noreferrer" : undefined}
-                    className="flex items-start gap-3 rounded-lg text-sm transition hover:text-[#084477] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#084477]"
-                  >
-                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#eaf2f8] text-[#084477]">
-                      <Icon size={17} aria-hidden="true" />
-                    </span>
-                    <span>
-                      <span className="block text-xs text-gray-500">{label}</span>
-                      <span className="mt-1 block font-medium text-[#17212f]">
-                        {value}
-                      </span>
-                    </span>
-                  </a>
-                ))}
+            <aside className="space-y-5 lg:pt-14">
+              <div className="rounded-[24px] bg-[#173a2b] p-6 text-[#faf8f0] shadow-[0_20px_50px_rgba(16,46,36,0.16)] sm:p-7">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d3b875]">
+                  Prefer a direct conversation?
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight">
+                  We&apos;re here to help.
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-white/70">
+                  Reach out by phone or email and let us know how we can help
+                  with your real estate plans.
+                </p>
+                <a
+                  href="tel:+1234567890"
+                  className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#d3b875] px-5 text-sm font-semibold text-[#173a2b] transition hover:bg-[#e3cc91] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  Call Zenvia <ArrowRight size={16} aria-hidden="true" />
+                </a>
               </div>
-            </div>
 
-            <p className="px-1 text-sm leading-6 text-gray-500">
-              Looking at a specific home?{" "}
-              <Link
-                href="/properties/brighton-ct#contact-agent"
-                className="font-semibold text-[#084477] hover:underline"
-              >
-                Contact its listing agent.
-              </Link>
-            </p>
-          </aside>
+              <div className="rounded-[24px] border border-[#e5dece] bg-[#fbf9f2] p-5 sm:p-6">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#927747]">
+                  Keep in touch
+                </p>
+                <h2 className="mt-2 text-lg font-semibold text-[#173a2b]">
+                  Contact details
+                </h2>
+                <div className="mt-5 space-y-4">
+                  {contactMethods.map(({ icon: Icon, label, value, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={href.startsWith("https://") ? "_blank" : undefined}
+                      rel={href.startsWith("https://") ? "noreferrer" : undefined}
+                      className="group flex items-start gap-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#927747]"
+                    >
+                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#e9e1cf] text-[#927747] transition group-hover:bg-[#173a2b] group-hover:text-[#f8f4e9]">
+                        <Icon size={16} aria-hidden="true" />
+                      </span>
+                      <span>
+                        <span className="block text-xs text-[#777465]">{label}</span>
+                        <span className="mt-1 block text-sm font-medium text-[#29443c] transition group-hover:text-[#927747]">
+                          {value}
+                        </span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <p className="px-1 text-sm leading-6 text-[#6f746a]">
+                Looking at a specific home?{" "}
+                <Link
+                  href="/properties/brighton-ct#contact-agent"
+                  className="font-semibold text-[#765f2f] hover:underline"
+                >
+                  Contact its listing agent.
+                </Link>
+              </p>
+            </aside>
+          </div>
         </section>
       </main>
       <Footer />
